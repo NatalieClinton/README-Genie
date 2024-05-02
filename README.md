@@ -1,2 +1,22 @@
-# README-Genie
-Repository for UTOR Assignment 9 (Due May 2nd 2024)
+
+          # README-Genie
+  
+          ## Description
+          A README generator
+  
+          ## Installation
+          n/a
+  
+          ## Usage
+          For class purposes
+  
+          ## Contributing
+          n/a
+  
+          ## Tests
+          n/a
+  
+          ## License
+          This project is licensed under the MIT license.
+  
+        
