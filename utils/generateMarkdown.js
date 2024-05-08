@@ -1,78 +1,47 @@
-// Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+// Creates a function that returns a license badge based on which license is passed in
+// If there is no license, returns an empty string
 function renderLicenseBadge(license) {
-  // Map license names to badge URLs
-  const licenseBadgeURLs = {
-    MIT: 'https://img.shields.io/badge/License-MIT-yellow.svg',
-    'GNU GPLv3': 'https://img.shields.io/badge/License-GPLv3-blue.svg',
-    'Apache 2.0': 'https://img.shields.io/badge/License-Apache%202.0-blue.svg',
-    ISC: 'https://img.shields.io/badge/License-ISC-blue.svg',
-    Other: '', // You can add a default badge URL here if needed
-  };
-  
-  // Return the badge URL corresponding to the license
-  return licenseBadgeURLs[license] || '';
+  if (license) {
+      return `![License](https://img.shields.io/badge/license-${license}-blue.svg)\n\n`;
+  } else {
+      return '';
+  }
 }
 
-// Create a function that returns the license link
-// If there is no license, return an empty string
+// Creates a function that returns the license link
+// If there is no license, returns an empty string
 function renderLicenseLink(license) {
-  // Return the license link corresponding to the license
-  return license !== 'Other' ? `[${license} License](https://opensource.org/licenses/${license})` : '';
+  if (license) {
+      return `[${license} License](LICENSE)\n\n`;
+  } else {
+      return '';
+  }
 }
 
-// Create a function that returns the license section of README
+// Creates a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  // Return the license section text based on the license
-  return license !== 'Other' ? `This project is licensed under the ${license} license.` : '';
+  if (license) {
+      return `This project is licensed under the terms of the ${license} license. See the [LICENSE](LICENSE) file for details.\n\n`;
+  } else {
+      return '';
+  }
 }
 
-// Create a function to generate markdown for README
+// Creates a function to generate markdown for README
 function generateMarkdown(data) {
-  // Generate license badge URL
-  const licenseBadge = renderLicenseBadge(data.license);
-
-  // Generate license link
-  const licenseLink = renderLicenseLink(data.license);
-
-  // Generate license section
-  const licenseSection = renderLicenseSection(data.license);
-
-  // Construct README content with license badge and other data
-  const markdownContent = `
-    ![License](${licenseBadge})
-
-    # ${data.projectTitle}
-
-    ## Description
-    ${data.description}
-
-    ## Table of Contents
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Contributing](#contributing)
-    - [Tests](#tests)
-    - [License](#license)
-
-    ## Installation
-    ${data.installation}
-
-    ## Usage
-    ${data.usage}
-
-    ## Contributing
-    ${data.contributing}
-
-    ## Tests
-    ${data.tests}
-
-    ## License
-    ${licenseSection}
-    ${licenseLink}
-  `;
-
-  return markdownContent;
+  return `# ${data.title}\n\n` +
+      renderLicenseBadge(data.license) +
+      `## Description\n\n${data.description}\n\n` +
+      `## Table of Contents\n\n- [Installation](#installation)\n- [Usage](#usage)\n- [License](#license)\n- [Contributing](#contributing)\n- [Tests](#tests)\n- [Questions](#questions)\n\n` +
+      `## Installation\n\n${data.installation}\n\n` +
+      `## Usage\n\n${data.usage}\n\n` +
+      `## License\n\n` +
+      renderLicenseLink(data.license) +
+      renderLicenseSection(data.license) +
+      `## Contributing\n\n${data.contributing}\n\n` +
+      `## Tests\n\n${data.tests}\n\n` +
+      `## Questions\n\nIf you have any questions about the project, feel free to reach out to me via [GitHub](https://github.com/${data.github}) or email me at ${data.email}.\n\n`;
 }
 
 module.exports = generateMarkdown;

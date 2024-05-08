@@ -1,114 +1,78 @@
-// Includes packages needed for this application
-const inquirer = require('inquirer');
 const fs = require('fs');
-
-// Creates an array of questions for user input
-const questions = [
-  {
-    type: 'input',
-    name: 'projectTitle',
-    message: 'Enter the title of your project:',
-  },
-  {
-    type: 'input',
-    name: 'description',
-    message: 'Enter a description of your project:',
-  },
-  {
-    type: 'input',
-    name: 'installation',
-    message: 'Enter installation instructions:',
-  },
-  {
-    type: 'input',
-    name: 'usage',
-    message: 'Enter usage information:',
-  },
-  {
-    type: 'input',
-    name: 'contributing',
-    message: 'Enter contribution guidelines:',
-  },
-  {
-    type: 'input',
-    name: 'tests',
-    message: 'Enter test instructions:',
-  },
-  {
-    type: 'list',
-    name: 'license',
-    message: 'Choose a license for your project:',
-    choices: ['MIT', 'GNU GPLv3', 'Apache 2.0', 'ISC', 'Other'],
-  },
-];
+const inquirer = require('inquirer');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 // Function to write README file
-function writeToFile(fileName, data) {
-  // Generates license badge URL
-  const licenseBadge = generateLicenseBadge(data.license);
-
-  // Constructs README content with license badge
-  const readmeContent = `![License](${licenseBadge})
-
-# ${data.projectTitle}
-
-## Description
-${data.description}
-
-## Installation
-${data.installation}
-
-## Usage
-${data.usage}
-
-## Contributing
-${data.contributing}
-
-## Tests
-${data.tests}
-
-## License
-This project is licensed under the ${data.license} license.
-`;
-
-  fs.writeFile(fileName, readmeContent, err => {
-    if (err) {
-      console.error('Error writing to file:', err);
-    } else {
-      console.log('README.md file generated successfully!');
-    }
-  });
-}
-
-// Function to initialize app
-function init() {
-  // Prompts the user for input using the questions array
-  inquirer
-    .prompt(questions)
-    .then(answers => {
-      // Writes the README content to a file
-      writeToFile('README.md', answers);
-    })
-    .catch(error => {
-      console.error('Error occurred:', error);
+function writeREADME(content) {
+  // Writes the README content to a file named README.md
+    fs.writeFile('README.md', content, err => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log('README.md created successfully!');
+        }
     });
 }
 
-// Function call to initialize app
-init();
+// Questions for the user
+const questions = [
+    {
+        type: 'input',
+        name: 'title',
+        message: 'Enter the project title:'
+    },
+    {
+        type: 'input',
+        name: 'description',
+        message: 'Enter a description for your project:'
+    },
+    {
+        type: 'input',
+        name: 'installation',
+        message: 'Enter installation instructions:'
+    },
+    {
+        type: 'input',
+        name: 'usage',
+        message: 'Enter usage information:'
+    },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'Choose a license for your project:',
+        choices: ['MIT', 'Apache-2.0', 'GPL-3.0', 'BSD-2-Clause', 'BSD-3-Clause', 'Other']
+    },
+    {
+        type: 'input',
+        name: 'contributing',
+        message: 'Enter contribution guidelines:'
+    },
+    {
+        type: 'input',
+        name: 'tests',
+        message: 'Enter test instructions:'
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Enter your GitHub username:'
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Enter your email address:'
+    }
+];
 
-// Function that returns a license badge based on which license is passed in
-// If there is no license, returns an empty string
-function generateLicenseBadge(license) {
-  // Map license names to badge URLs
-  const licenseBadgeURLs = {
-    MIT: 'https://img.shields.io/badge/License-MIT-yellow.svg',
-    'GNU GPLv3': 'https://img.shields.io/badge/License-GPLv3-blue.svg',
-    'Apache 2.0': 'https://img.shields.io/badge/License-Apache%202.0-blue.svg',
-    ISC: 'https://img.shields.io/badge/License-ISC-blue.svg',
-    Other: 'https://img.shields.io/badge/License-Other-lightgrey.svg', // Default badge for "Other"
-  };
-  
-  // Returns the badge URL corresponding to the license
-  return licenseBadgeURLs[license] || '';
-}
+// Prompt user for input
+inquirer
+    .prompt(questions)
+    .then(answers => {
+        // Generate markdown content based on user's answers
+        const readmeContent = generateMarkdown(answers);
+        // Write generated content to README.md file
+        writeREADME(readmeContent);
+    })
+    .catch(error => {
+        console.error(error);
+    });
