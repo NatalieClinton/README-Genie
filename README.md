@@ -1,22 +1,21 @@
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-    ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-    # README Genie
+# README GENIE
 
-    ## Description
-    A readme generator
+## Description
+N/A
 
-    ## Installation
-    na
+## Installation
+N/A
 
-    ## Usage
-    na
+## Usage
+N/A
 
-    ## Contributing
-    na
+## Contributing
+N/A
 
-    ## Tests
-    na
+## Tests
+N/A
 
-    ## License
-    This project is licensed under the MIT license.
-  
+## License
+This project is licensed under the MIT license.

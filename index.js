@@ -1,4 +1,4 @@
-// Include packages needed for this application
+// Includes packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
 
@@ -48,28 +48,28 @@ function writeToFile(fileName, data) {
   const licenseBadge = generateLicenseBadge(data.license);
 
   // Constructs README content with license badge
-  const readmeContent = `
-    ![License](${licenseBadge})
-    # ${data.projectTitle}
+  const readmeContent = `![License](${licenseBadge})
 
-    ## Description
-    ${data.description}
+# ${data.projectTitle}
 
-    ## Installation
-    ${data.installation}
+## Description
+${data.description}
 
-    ## Usage
-    ${data.usage}
+## Installation
+${data.installation}
 
-    ## Contributing
-    ${data.contributing}
+## Usage
+${data.usage}
 
-    ## Tests
-    ${data.tests}
+## Contributing
+${data.contributing}
 
-    ## License
-    This project is licensed under the ${data.license} license.
-  `;
+## Tests
+${data.tests}
+
+## License
+This project is licensed under the ${data.license} license.
+`;
 
   fs.writeFile(fileName, readmeContent, err => {
     if (err) {
@@ -106,7 +106,7 @@ function generateLicenseBadge(license) {
     'GNU GPLv3': 'https://img.shields.io/badge/License-GPLv3-blue.svg',
     'Apache 2.0': 'https://img.shields.io/badge/License-Apache%202.0-blue.svg',
     ISC: 'https://img.shields.io/badge/License-ISC-blue.svg',
-    Other: '', // You can add a default badge URL here if needed
+    Other: 'https://img.shields.io/badge/License-Other-lightgrey.svg', // Default badge for "Other"
   };
   
   // Returns the badge URL corresponding to the license
