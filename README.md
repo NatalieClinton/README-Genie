@@ -1,21 +1,21 @@
 
         ![License](https://img.shields.io/badge/license-MIT-green)
-        # README-Genie
+        # README Genie
 
         ## Description
-        README-Genie is a handy tool designed to automate the creation of README files for your projects.
+        README Generator
 
         ## Installation
-        Currently, no specific installation steps are required. Simply clone or download the repository and you're ready to go!
+        N/A
 
         ## Usage
-        README-Genie is primarily intended for educational purposes, making it an excellent tool for classroom settings or learning environments. With its simple interface, generating README files becomes a breeze.
+        N.A
 
         ## Contributing
-        At the moment, no contributions are being accepted for this project. However, feedback and suggestions are always welcome.
+        N.A
 
         ## Tests
-        There are no specific test suites available for this project at this time.
+        N.A
 
         ## License
         This project is licensed under the MIT license.
