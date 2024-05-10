@@ -41,3 +41,6 @@ To run tests, run the following command: npm test
 
 If you have any questions about the project, feel free to reach out to me via [GitHub](https://github.com/NatalieClinton) or email me at natalie.clinton@hotmail.com.
 
+## Link to Video 
+https://drive.google.com/file/d/14Zw-gqvOKEk3UTWpFZ2bYkqBoKP18XYg/view 
+
